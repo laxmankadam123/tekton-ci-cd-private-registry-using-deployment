@@ -1,0 +1,21 @@
+
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: pipeline-run 
+spec:
+  pipelineRef:
+    name: firstpipeline
+  resources:
+    - name: git-source
+      resourceRef:
+        name: gitinput
+  params:
+    - name: pathToYamlFile
+      value: "src/deploy.yaml"
+    - name: imageUrl
+      value: worker:30221/sampleimage
+
+    - name: imageTag
+      value: "2.0"
+  serviceAccountName: sampleservice

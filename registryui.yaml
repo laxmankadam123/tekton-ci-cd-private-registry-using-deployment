@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: registryui
+  labels:
+    app: registryui
+spec:
+  ports:
+    - name: registryui
+      port: 80
+      protocol: TCP
+      targetPort: 80
+      nodePort: 30082
+  selector:
+    app: registryui
+    tier: frontend
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registryui
+  labels:
+    app: registryui
+spec:
+  selector:
+    matchLabels: 
+      app: registryui
+  template:
+    metadata:
+      labels:
+        app: registryui
+        tier: frontend
+    spec:
+      containers:
+        - image: konradkleine/docker-registry-frontend:v2
+          imagePullPolicy: IfNotPresent
+          name: registryui
+          env:
+            - name: ENV_DOCKER_REGISTRY_HOST
+              value: privateregistry
+            - name: ENV_DOCKER_REGISTRY_PORT
+              value: "5000"
+          ports:
+            - containerPort: 80
+              name: registryui
+
+
+
+
