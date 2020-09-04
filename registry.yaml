@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: privateregistry
+  name: <name-of-service>
   labels:
     app: registry
 spec:
@@ -35,7 +35,7 @@ spec:
       volumes: 
         - name: registry
           persistentVolumeClaim:
-            claimName: registry-claim
+            claimName: <name-of-pvc-created>
 
       containers:
         - image: registry:2
