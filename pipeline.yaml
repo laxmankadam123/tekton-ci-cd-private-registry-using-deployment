@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: Pipeline
 metadata:
-  name: firstpipeline
+  name: <name-of-pipeline>
 spec:
   resources:
     - name: git-source
@@ -19,7 +19,7 @@ spec:
   tasks:
   - name: source-to-image
     taskRef:
-      name: firsttask
+      name: <name-of-task1>
     params:
       - name: pathToContext
         value: "$(params.pathToContext)"
@@ -33,7 +33,7 @@ spec:
           resource: git-source
   - name: deploy-to-cluster
     taskRef:
-      name: secondtask 
+      name: <name-of-task2>
     runAfter:
       - source-to-image
     params:
