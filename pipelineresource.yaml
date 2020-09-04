@@ -1,11 +1,11 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: gitinput
+  name: <name-of-resource>
 spec:
   type: git
   params:
     - name: revision
       value: master
     - name: url
-      value: https://github.com/laxmankadam123/tekton-ci-cd-privateregistry-k8s
+      value: https://github.com/laxmankadam123/tekton-ci-cd-private-registry
