@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: registryui
+  name: <name-of-service>
   labels:
     app: registryui
 spec:
@@ -38,7 +38,7 @@ spec:
           name: registryui
           env:
             - name: ENV_DOCKER_REGISTRY_HOST
-              value: privateregistry
+              value: <name-of-registryservice-created>
             - name: ENV_DOCKER_REGISTRY_PORT
               value: "5000"
           ports:
